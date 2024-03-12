@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import { ref, onMounted } from 'vue'
-// // import ElButton from './components/Button/Button.vue'
+import ElButton from './components/Button/Button.vue'
 // // import ElButtonGroup from './components/ButtonGroup/ButtonGroup.vue'
 // // import ElContainer from './components/Container/Container.vue'
 // // import ElAside from './components/Container/Aside.vue'
@@ -13,6 +13,8 @@
 // // import ElLink from './components/Link/Link.vue'
 // // import ElAlert from './components/Alert/Alert.vue'
 // import ElTooltip from './components/Tooltip/Tooltip.vue'
+import ElMessage from './components/Message/Message.vue'
+import { createMessage } from '@/components/Message/method'
 // const openedValue = ref(['a'])
 // setTimeout(() => {
 //   openedValue.value = ['a', 'b']
@@ -29,10 +31,14 @@
 //     popperInstance = createPopper(triggerNode.value, overlayNode.value, { placement: 'bottom' })
 //   }
 // })
+function clickFn() {
+  createMessage({ message: 'message消息提示', type: 'success' })
+}
 </script>
 
 <template>
   <div>
+    <el-button type="success" @click="clickFn"> click </el-button>
     <!-- <header>
       <img alt="Vue logo" class="logo" src="./assets//vue.svg" width="125" height="125" ref="triggerNode"/>
       <div ref="overlayNode"><h1>Hello Tooltip</h1></div>
@@ -82,9 +88,6 @@
     <el-alert title="warning alert" type="warning" />
     <el-alert title="error alert" type="error" /> -->
 
-
-   
-    
     <router-view></router-view>
   </div>
 </template>

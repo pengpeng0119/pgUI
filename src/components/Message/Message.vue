@@ -1,43 +1,34 @@
 <template>
-  <!-- 使用过渡效果包裹消息组件 -->
-  <!-- 离开动画结束后执行销毁组件方法 -->
-  <!-- 进入动画开始时执行更新高度方法 -->
-  <Transition 
+  <Transition
     name="fade-up"
-    @after-leave="destroyComponent" 
-    @enter="updateHeight"
-  > 
-    <!-- 根据 visible 控制消息是否显示 -->
-    <!-- 鼠标移入时清除定时器，鼠标移出时启动定时器 -->
+    @after-leave="destroyComponent"
+    @enter="updateHeight">
     <div
       class="el-message"
-      v-show="visible" 
+      v-show="visible"
       :class="{
         [`el-message--${type}`]: type,
-        'is-close': showClose
+        'is-close': showClose,
       }"
       role="alert"
       ref="messageRef"
       :style="cssStyle"
       @mouseenter="clearTimer"
-      @mouseleave="startTimer"
-    > 
+      @mouseleave="startTimer">
       <div class="el-message__content">
         <slot>
-          <!-- 渲染消息内容 -->
           <RenderVnode :vNode="message" v-if="message" />
         </slot>
       </div>
       <div class="el-message__close" v-if="showClose">
-        <!-- 显示关闭按钮 -->
-        <Icon @click.stop="visible = false" icon="xmark"/> <!-- 点击关闭按钮后隐藏消息 -->
+        <Icon @click.stop="visible = false" icon="xmark" />
       </div>
     </div>
   </Transition>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, computed, nextTick } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import type { MessageProps } from './types'
 import RenderVnode from '../Common/RenderVnode'
 import Icon from '../Icon/Icon.vue'
@@ -57,12 +48,13 @@ const messageRef = ref<HTMLDivElement>() // 消息组件的引用
 
 // 计算属性
 const height = ref(0) // 消息组件高度
+const closeOffset = ref(0)
 const lastOffset = computed(() => getLastBottomOffset(props.id)) // 上一个实例的最下面的坐标数字
 const topOffset = computed(() => props.offset + lastOffset.value) // 元素的 top 偏移量
 const bottomOffset = computed(() => height.value + topOffset.value) // 元素的 bottom 偏移量，为下一个消息组件提供
 const cssStyle = computed(() => ({
-  top: topOffset.value + 'px', // 动态设置 top 样式
-  zIndex: props.zIndex // 动态设置 z-index 样式
+  top: topOffset.value + closeOffset.value + 'px', // 动态设置 top 样式
+  zIndex: props.zIndex, // 动态设置 z-index 样式
 }))
 
 let timer: any
@@ -97,7 +89,7 @@ function keydown(e: Event) {
 useEventListener(document, 'keydown', keydown)
 
 // 销毁组件函数
-function destroyComponent () {
+function destroyComponent() {
   props.onClose() // 调用销毁消息的回调函数
 }
 
@@ -108,11 +100,13 @@ function updateHeight() {
 
 // 公开的组件选项和属性
 defineOptions({
-  name: 'ElMessage' // 组件名称
+  name: 'ElMessage', // 组件名称
 })
 
 defineExpose({
   bottomOffset,
-  visible // 将 bottomOffset 和 visible 公开
+  visible, // 将 bottomOffset 和 visible 公开
+  topOffset,
+  closeOffset,
 })
 </script>

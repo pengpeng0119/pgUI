@@ -14,7 +14,7 @@ import { omit } from 'lodash-es'
 import { computed } from 'vue'
 defineOptions({
   name: 'ElIcon',
-  inheritAttrs: false
+  inheritAttrs: false,
 })
 const props = defineProps<IconProps>()
 // 过滤掉props中传递的color属性
@@ -24,9 +24,9 @@ const iconProps = computed(() => {
 // 根据是否传递color属性来决定 icon的颜色
 const iconStyle = computed(() => {
   const { color } = props
-  if(!color) return {}
+  if (!color) return {}
   return {
-    '--color': color
+    '--color': color,
   }
 })
 </script>

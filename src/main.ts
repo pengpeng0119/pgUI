@@ -14,5 +14,4 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 /* add icons to the library */
 library.add(fas)
 
-createApp(App).use(router)
-.mount('#app')
+createApp(App).use(router).mount('#app')

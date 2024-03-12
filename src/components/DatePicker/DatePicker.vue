@@ -10,7 +10,9 @@
         </button>
       </div>
       <div class="calendar-operate__title">{{ dateText }}</div>
-      <button class="button" :disabled="isToday" @click="currentDate">今天</button>
+      <button class="button" :disabled="isToday" @click="currentDate">
+        今天
+      </button>
     </div>
     <div class="calendar-header">
       <span
@@ -33,27 +35,27 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
-import Icon from '../Icon/Icon.vue';
-import { weekMapZh, generateCalendar } from './calendar';
-import { isAllTrue } from './calendar';
-import { CalendarItem } from './calendar';
+import { ref, computed } from 'vue'
+import Icon from '../Icon/Icon.vue'
+import { weekMapZh, generateCalendar } from './calendar'
+import { isAllTrue } from './calendar'
+import { CalendarItem } from './calendar'
 
-const date = ref<Date>(new Date());
-const calendarTable = computed(() => generateCalendar(date.value));
+const date = ref<Date>(new Date())
+const calendarTable = computed(() => generateCalendar(date.value))
 const dateText = computed(() => {
-  return `${date.value.getFullYear()}/${date.value.getMonth() + 1}`;
-});
+  return `${date.value.getFullYear()}/${date.value.getMonth() + 1}`
+})
 
 const isToday = computed(() => {
-  const current = new Date();
+  const current = new Date()
   const validArr = [
     date.value.getFullYear() === current.getFullYear(),
     date.value.getMonth() === current.getMonth(),
     date.value.getDay() === current.getDay(),
-  ];
-  return isAllTrue(validArr);
-});
+  ]
+  return isAllTrue(validArr)
+})
 /**
  * 当天日期高亮显示, 兼容切换日期：
  * 年月日都要对上才能高亮
@@ -65,35 +67,36 @@ const isActive = (item: CalendarItem) => {
     item.isCurrentMonth,
     item.month === new Date().getMonth(),
     item.year === new Date().getFullYear(),
-  ]);
-};
+  ])
+}
 // 切换到今天
 const currentDate = () => {
-  date.value = new Date();
-};
+  date.value = new Date()
+}
 // 切换月份, 上个月 or 下个月
 const changeMonth = (type: 'prev' | 'next'): void => {
-  let month = 0;
-  let year = 1970;
+  let month = 0
+  let year = 1970
   if (type === 'prev') {
-    month = date.value.getMonth() === 0 ? 11 : date.value.getMonth() - 1;
-    year = month === 11 ? date.value.getFullYear() - 1 : date.value.getFullYear();
+    month = date.value.getMonth() === 0 ? 11 : date.value.getMonth() - 1
+    year =
+      month === 11 ? date.value.getFullYear() - 1 : date.value.getFullYear()
   } else {
-    month = date.value.getMonth() === 11 ? 0 : date.value.getMonth() + 1;
-    year = month === 0 ? date.value.getFullYear() + 1 : date.value.getFullYear();
+    month = date.value.getMonth() === 11 ? 0 : date.value.getMonth() + 1
+    year = month === 0 ? date.value.getFullYear() + 1 : date.value.getFullYear()
   }
 
   if (month === new Date().getMonth()) {
-    currentDate();
-    return;
+    currentDate()
+    return
   }
 
-  date.value.setDate(1);
-  date.value.setMonth(month);
-  date.value.setFullYear(year);
+  date.value.setDate(1)
+  date.value.setMonth(month)
+  date.value.setFullYear(year)
 
-  date.value = new Date(date.value);
-};
+  date.value = new Date(date.value)
+}
 </script>
 <style scoped lang="scss">
 .button {
@@ -206,7 +209,7 @@ const changeMonth = (type: 'prev' | 'next'): void => {
       border-bottom: 2px solid #0065ff;
     }
     &:hover {
-      background-color: rgba( #dbf0ff, 0.4);
+      background-color: rgba(#dbf0ff, 0.4);
       cursor: pointer;
     }
     &.light {
