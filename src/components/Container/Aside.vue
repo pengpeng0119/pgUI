@@ -17,6 +17,7 @@ const computedStyle = computed(() => {
     width: (props.width || 200) + 'px'
   }
 })
+// 暴露实例
 </script>
 <style lang="">
 </style>

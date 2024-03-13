@@ -29,4 +29,5 @@ const iconStyle = computed(() => {
     '--color': color,
   }
 })
+// 暴露FontAwesomeIcon组件
 </script>

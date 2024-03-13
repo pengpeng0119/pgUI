@@ -32,5 +32,5 @@ const [rateNum, setRateNum] = useRate(props.nums, () => {
   // 触发改变评分数量事件
   emits('changeRateNums', rateNum.value);
 });
-
+// 
 </script>

@@ -1,36 +1,15 @@
 <script setup lang="ts">
-// import { ref, onMounted } from 'vue'
 import ElButton from './components/Button/Button.vue'
-// // import ElButtonGroup from './components/ButtonGroup/ButtonGroup.vue'
-// // import ElContainer from './components/Container/Container.vue'
-// // import ElAside from './components/Container/Aside.vue'
-// // import ElHeader from './components/Container/Header.vue'
-// // import ElFooter from './components/Container/Footer.vue'
-// // import ElMain from './components/Container/Main.vue'
-// // import Collapse from './components/Collapse/Collapse.vue'
-// // import Item from './components/Collapse/CollapseItem.vue'
-// // import ElIcon from './components/Icon/Icon.vue'
-// // import ElLink from './components/Link/Link.vue'
-// // import ElAlert from './components/Alert/Alert.vue'
-// import ElTooltip from './components/Tooltip/Tooltip.vue'
-import ElMessage from './components/Message/Message.vue'
+import { onMounted, ref } from 'vue'
 import { createMessage } from '@/components/Message/method'
-// const openedValue = ref(['a'])
-// setTimeout(() => {
-//   openedValue.value = ['a', 'b']
-// }, 2000)
+import virtuallyList from '@/components/virtually-list/index.ts'
 
-// import { createPopper } from '@popperjs/core'
-// import type { Instance } from '@popperjs/core'
-// const overlayNode = ref<HTMLElement>()
-// const triggerNode = ref<HTMLElement>()
-// let popperInstance: Instance | null = null
-// console.log(popperInstance)
-// onMounted(() => {
-//   if (overlayNode.value && triggerNode.value) {
-//     popperInstance = createPopper(triggerNode.value, overlayNode.value, { placement: 'bottom' })
-//   }
-// })
+const list = ref<any>([])
+onMounted(() => {
+  for (let i = 0; i < 1000; i++) {
+    list.value.push({ text: i + '这是滚动列表的数据！！！' })
+  }
+})
 function clickFn() {
   createMessage({ message: 'message消息提示', type: 'success' })
 }
@@ -39,6 +18,17 @@ function clickFn() {
 <template>
   <div>
     <el-button type="success" @click="clickFn"> click </el-button>
+    <virtuallyList
+      :data="list"
+      :height="300"
+      :width="300"
+      :itemCount="1000"
+      :itemEstimatedSize="1"
+      :buffCount="15">
+      <template #slot-scope="{ slotProps }">
+        <div class="li">{{ slotProps.data.text }}</div>
+      </template>
+    </virtuallyList>
     <!-- <header>
       <img alt="Vue logo" class="logo" src="./assets//vue.svg" width="125" height="125" ref="triggerNode"/>
       <div ref="overlayNode"><h1>Hello Tooltip</h1></div>
@@ -93,3 +83,5 @@ function clickFn() {
 </template>
 
 <style scoped></style>
+import { onMounted } from 'vue'; import { onMounted } from 'vue'; import {
+onMounted } from 'vue';import ts from 'typescript';

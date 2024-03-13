@@ -18,10 +18,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import ElForm from '../../components/Form/Form.vue'
-import ElFormItem from '../../components/Form/FormItem.vue'
-import ElInput from '../../components/Input/Input.vue'
-import ElButton from '../../components/Button/Button.vue'
 import { reactive } from "vue";
 const model = reactive({
   email: '222',

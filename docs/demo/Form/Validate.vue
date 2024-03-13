@@ -19,14 +19,15 @@ import ElForm from '@/components/Form/Form.vue'
 import ElFormItem from '@/components/Form/FormItem.vue'
 import ElInput from '@/components/Input/Input.vue'
 import ElButton from '@/components/Button/Button.vue'
-import { reactive } from "vue";
+import { reactive } from 'vue'
 const model = reactive({
   email: '222',
-  password: '333'
+  password: '333',
 })
 const rules = {
-  email: [{ type: 'string', required: true, trigger: 'blur'}],
-  password: [ {min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }]
+  email: [{ type: 'string', required: true, trigger: 'blur' }],
+  password: [
+    { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
+  ],
 }
-
 </script>

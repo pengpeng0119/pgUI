@@ -67,4 +67,5 @@ provide(collapseContextKey, {
   activeNames,
   handleItemClick
 })
+// 导出属性和方法
 </script>

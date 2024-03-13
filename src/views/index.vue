@@ -5,9 +5,6 @@
 </template>
 <script lang="ts" setup>
 defineOptions({
-  name: 'IndexView'
+  name: 'IndexView',
 })
 </script>
-<style lang="">
-  
-</style>

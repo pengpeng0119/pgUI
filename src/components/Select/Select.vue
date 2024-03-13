@@ -207,4 +207,5 @@ const onClear = () => {
   emits('change', '')
   emits('update:modelValue', '')
 }
+// 监听外部传入的value变化
 </script>

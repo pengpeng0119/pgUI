@@ -24,31 +24,31 @@ defineOptions({
 // 用于存储表单字段的数组
 const fields: FormItemContext[] = []
 
-// 添加字段到表单的函数
+// 添加字段到表单的函数-传入item
 const addField: FormContext['addField'] = (field) => {
   fields.push(field)
 }
 
-// 从表单中移除字段的函数
+// 从表单中移除字段的函数-传入item
 const removeField: FormContext['removeField'] = (field) => {
   if (field.prop) {
     fields.splice(fields.indexOf(field), 1)
   }
 }
 
-// 重置表单中的字段的函数
+// 重置表单中的字段的函数-暴露给外部使用
 const resetFields: FormContext['resetFields'] = (keys = []) => {
   const filterArr = keys.length > 0 ? fields.filter(field => keys.includes(field.prop)) : fields
   filterArr.forEach(field => field.resetField())
 }
 
-// 清除表单中字段的验证状态的函数
+// 清除表单中字段的验证状态的函数-暴露给外部使用
 const clearValidate: FormContext['clearValidate'] = (keys = []) => {
   const filterArr = keys.length > 0 ? fields.filter(field => keys.includes(field.prop)) : fields
   filterArr.forEach(field => field.clearValidate())
 }
 
-// 验证所有表单字段的函数
+// 验证所有表单字段的函数-暴露给外部使用
 const validate: FormContext['validate'] = async () => {
   let validationErrors: ValidateFieldsError = {}
   for (const field of fields) {
@@ -88,4 +88,5 @@ provide(
     validate
   }
 )
+// 导出属性和方法
 </script>

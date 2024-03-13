@@ -2,10 +2,6 @@ import { render, h, shallowReactive } from 'vue'
 import type { CreateMessageProps, MessageContext } from './types'
 import MessageConstructor from './Message.vue'
 import useZIndex from '../../hooks/useZIndex'
-interface CreateMessageProps {
-  height: number
-  // other properties...
-}
 
 let seed = 1 //闭包
 

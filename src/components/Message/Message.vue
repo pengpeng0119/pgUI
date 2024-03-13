@@ -109,4 +109,5 @@ defineExpose({
   topOffset,
   closeOffset,
 })
+// 暴露实例
 </script>

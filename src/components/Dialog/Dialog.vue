@@ -76,6 +76,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('mousemove', handleDragging);
   window.removeEventListener('mouseup', stopDragging);
 });
+// 暴露实例
 </script>
 
 <style scoped>

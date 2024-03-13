@@ -96,4 +96,5 @@ const showAlertIcon = () => {
       return 'circle-xmark'
   }
 }
+// 导出属性和方法
 </script>

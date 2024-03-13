@@ -168,4 +168,5 @@ const runValidation = (trigger: string) => {
 defineExpose({
   inputInstance
 })
+// 提供给FormItem使用的方法
 </script>

@@ -5,10 +5,9 @@
     :class="computedClass"
     :disabled="disabled || loading"
     :autofocus="autofocus"
-    :type="nativeType"
-  >
+    :type="nativeType">
     <!-- 如果按钮处于加载中 -->
-    <el-icon icon="spinner" v-if="loading" spin/>
+    <el-icon icon="spinner" v-if="loading" spin />
     <!-- 如果按钮传递图标 -->
     <el-icon :icon="icon" v-if="icon" />
     <span>
@@ -23,7 +22,7 @@ import { computed, ref } from 'vue'
 import ElIcon from '../Icon/Icon.vue'
 // 定义组件名称
 defineOptions({
-  name: 'ElButton'
+  name: 'ElButton',
 })
 // 接收props
 const props = defineProps(buttonProps)
@@ -31,7 +30,7 @@ const props = defineProps(buttonProps)
 const _ref = ref<HTMLButtonElement>()
 // defineExpose暴露实例
 defineExpose({
-  ref: _ref
+  ref: _ref,
 })
 // 计算button的样式类
 const computedClass = computed(() => {
@@ -39,17 +38,16 @@ const computedClass = computed(() => {
   return [
     type ? 'el-button--' + type : '',
     size ? 'el-button--' + size : '',
-    { 
+    {
       'is-round': round,
       'is-loading': loading,
       'is-circle': circle,
       'is-disabled': disabled,
       'is-plain': plain,
-    }
+    },
   ]
 })
+// 定义原生type
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

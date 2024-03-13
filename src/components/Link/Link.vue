@@ -53,4 +53,5 @@ const handleClick = (event: MouseEvent) => {
     emits('click', event)
   }
 }
+// 暴露组件
 </script>
